@@ -1,0 +1,399 @@
+/* Kay Jewelers — Gift Finder Block */
+
+.gift-finder {
+  background-color: var(--color-white);
+  padding: var(--spacing-xl) 0 var(--spacing-2xl);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.gift-finder-header {
+  text-align: center;
+  padding: 0 var(--spacing-lg);
+  margin-bottom: var(--spacing-xl);
+}
+
+.gift-finder-eyebrow {
+  display: block;
+  font-family: var(--font-body);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: var(--spacing-sm);
+}
+
+.gift-finder-title {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 400;
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-sm);
+}
+
+.gift-finder-subtitle {
+  font-size: var(--font-size-sm);
+  color: var(--color-mid);
+  max-width: 500px;
+  margin: 0 auto;
+  line-height: 1.65;
+}
+
+/* ============================================================
+   FILTER PANEL
+   ============================================================ */
+.gift-finder-filters {
+  max-width: var(--content-max-width);
+  margin: 0 auto var(--spacing-xl);
+  padding: var(--spacing-lg) var(--spacing-xl);
+  background: var(--color-bg);
+  border-radius: var(--border-radius-md);
+  display: flex;
+  align-items: flex-end;
+  gap: var(--spacing-lg);
+  flex-wrap: wrap;
+  border: 1px solid var(--color-border);
+}
+
+.gift-finder-filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  flex: 1;
+  min-width: 140px;
+}
+
+.gift-finder-filter-label {
+  font-family: var(--font-body);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-mid);
+}
+
+.gift-finder-select {
+  width: 100%;
+  padding: 10px 36px 10px 14px;
+  background: var(--color-white) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='7' viewBox='0 0 10 7' fill='none'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%23666' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat right 12px center;
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-sm);
+  font-family: var(--font-body);
+  font-size: var(--font-size-sm);
+  color: var(--color-primary);
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  transition: border-color var(--transition-fast);
+}
+
+.gift-finder-select:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(139, 115, 85, 0.15);
+}
+
+.gift-finder-select:hover {
+  border-color: var(--color-accent);
+}
+
+/* Search button */
+.gift-finder-search-btn {
+  padding: 10px 28px;
+  background: var(--color-primary);
+  color: var(--color-white);
+  border: 2px solid var(--color-primary);
+  border-radius: var(--border-radius-sm);
+  font-family: var(--font-body);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background var(--transition-fast), color var(--transition-fast);
+  white-space: nowrap;
+  height: 42px;
+  align-self: flex-end;
+}
+
+.gift-finder-search-btn:hover {
+  background: transparent;
+  color: var(--color-primary);
+}
+
+/* ============================================================
+   RESULTS GRID
+   ============================================================ */
+.gift-finder-results {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+}
+
+.gift-finder-results-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-lg);
+}
+
+.gift-finder-results-title {
+  font-family: var(--font-display);
+  font-size: var(--font-size-lg);
+  font-weight: 400;
+  color: var(--color-primary);
+}
+
+.gift-finder-results-count {
+  font-size: var(--font-size-sm);
+  color: var(--color-mid);
+}
+
+.gift-finder-product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-xl);
+}
+
+/* ============================================================
+   PRODUCT CARD (gift-finder variant)
+   ============================================================ */
+.gift-product-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-md);
+  overflow: hidden;
+  text-decoration: none;
+  transition: box-shadow var(--transition-fast), border-color var(--transition-fast);
+  position: relative;
+}
+
+.gift-product-card:hover {
+  box-shadow: 0 6px 24px rgba(26, 26, 26, 0.1);
+  border-color: var(--color-accent);
+}
+
+.gift-product-card-image {
+  position: relative;
+  aspect-ratio: 1;
+  background: var(--color-bg);
+  overflow: hidden;
+}
+
+.gift-product-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-med);
+}
+
+.gift-product-card:hover .gift-product-card-image img {
+  transform: scale(1.04);
+}
+
+/* Badge */
+.gift-product-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: var(--color-sale);
+  color: var(--color-white);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 2px;
+  z-index: 2;
+}
+
+.gift-product-badge--new {
+  background: var(--color-accent);
+}
+
+/* Wishlist */
+.gift-product-wishlist {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 32px;
+  height: 32px;
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+  transition: background var(--transition-fast), color var(--transition-fast);
+  color: var(--color-mid);
+}
+
+.gift-product-wishlist:hover,
+.gift-product-wishlist.wishlisted {
+  background: var(--color-white);
+  color: var(--color-sale);
+}
+
+.gift-product-wishlist svg {
+  width: 16px;
+  height: 16px;
+}
+
+.gift-product-info {
+  padding: var(--spacing-md);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.gift-product-name {
+  font-family: var(--font-body);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--color-primary);
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.gift-product-price {
+  font-family: var(--font-body);
+  font-size: var(--font-size-sm);
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.gift-product-price-original {
+  text-decoration: line-through;
+  color: var(--color-light-mid);
+  font-weight: 400;
+  margin-left: 6px;
+}
+
+.gift-product-price-sale {
+  color: var(--color-sale);
+}
+
+.gift-product-occasion {
+  font-size: var(--font-size-xs);
+  color: var(--color-accent);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* ============================================================
+   LOADING STATE
+   ============================================================ */
+.gift-finder-loading {
+  text-align: center;
+  padding: var(--spacing-xl);
+  color: var(--color-mid);
+  font-size: var(--font-size-sm);
+}
+
+/* Empty state */
+.gift-finder-empty {
+  text-align: center;
+  padding: var(--spacing-xl);
+}
+
+.gift-finder-empty h3 {
+  font-family: var(--font-display);
+  font-size: var(--font-size-lg);
+  font-weight: 400;
+  margin-bottom: var(--spacing-sm);
+}
+
+.gift-finder-empty p {
+  color: var(--color-mid);
+  margin: 0 auto var(--spacing-lg);
+}
+
+/* ============================================================
+   CTA ROW
+   ============================================================ */
+.gift-finder-cta-row {
+  text-align: center;
+  padding-top: var(--spacing-md);
+}
+
+.gift-finder-cta-row a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 32px;
+  background: transparent;
+  border: 2px solid var(--color-primary);
+  color: var(--color-primary);
+  font-family: var(--font-body);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: var(--border-radius-sm);
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.gift-finder-cta-row a:hover {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 1024px) {
+  .gift-finder-product-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .gift-finder-filters {
+    padding: var(--spacing-md);
+    gap: var(--spacing-md);
+    margin: 0 var(--spacing-md) var(--spacing-lg);
+  }
+
+  .gift-finder-filter-group {
+    min-width: calc(50% - 8px);
+  }
+
+  .gift-finder-search-btn {
+    width: 100%;
+    flex: 1 0 100%;
+  }
+
+  .gift-finder-product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-sm);
+  }
+}
+
+@media (max-width: 480px) {
+  .gift-finder {
+    padding: var(--spacing-lg) 0;
+  }
+
+  .gift-finder-results {
+    padding: 0 var(--spacing-md);
+  }
+
+  .gift-finder-filter-group {
+    min-width: 100%;
+  }
+}
