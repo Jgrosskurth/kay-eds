@@ -1,55 +1,63 @@
-/* Kay Jewelers — Milestone Grid Block */
+/*
+ * Kay Jewelers — Milestone Grid Block
+ * 4 full-image square tiles: Engagement · Anniversary · Birthday · Just Because
+ * Hover: slight zoom + label lift
+ */
 
+/* ============================================================
+   SECTION WRAPPER
+   ============================================================ */
 .milestone-grid {
+  padding: var(--space-2xl) 0;
   background-color: var(--color-bg);
-  padding: var(--spacing-xl) 0;
 }
 
 /* ============================================================
-   SECTION HEADER
+   HEADER
    ============================================================ */
 .milestone-grid-header {
   text-align: center;
-  margin-bottom: var(--spacing-lg);
-  padding: 0 var(--spacing-lg);
+  max-width: 600px;
+  margin: 0 auto var(--space-xl);
+  padding: 0 var(--space-lg);
 }
 
 .milestone-grid-eyebrow {
   display: block;
   font-family: var(--font-body);
-  font-size: var(--font-size-xs);
+  font-size: 10px;
   font-weight: 600;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--color-accent);
-  margin-bottom: var(--spacing-sm);
+  margin-bottom: var(--space-sm);
 }
 
 .milestone-grid-title {
   font-family: var(--font-display);
-  font-size: clamp(24px, 3vw, 40px);
+  font-size: clamp(28px, 4vw, 44px);
   font-weight: 400;
   color: var(--color-primary);
-  margin-bottom: var(--spacing-sm);
+  margin: 0 0 var(--space-md);
+  letter-spacing: -0.01em;
 }
 
 .milestone-grid-subtitle {
-  font-size: var(--font-size-sm);
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 300;
   color: var(--color-mid);
-  max-width: 480px;
-  margin: 0 auto;
-  line-height: 1.65;
+  line-height: 1.7;
+  margin: 0;
 }
 
 /* ============================================================
-   TILE GRID
+   TILE GRID — 4 columns
    ============================================================ */
 .milestone-grid-tiles {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 3px;
-  max-width: var(--max-width);
-  margin: 0 auto;
   padding: 0;
 }
 
@@ -58,103 +66,120 @@
    ============================================================ */
 .milestone-tile {
   position: relative;
-  overflow: hidden;
-  aspect-ratio: 3 / 4;
-  cursor: pointer;
   display: block;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
   text-decoration: none;
+  cursor: pointer;
+  background-color: var(--color-bg);
+
+  /* Stagger animation base state (set by JS) */
+  will-change: opacity, transform;
 }
 
-/* Image */
+.milestone-tile:focus-visible {
+  outline: 3px solid var(--color-accent-gold);
+  outline-offset: -3px;
+}
+
+/* ---- Image layer ---- */
 .milestone-tile-image {
   position: absolute;
   inset: 0;
-  z-index: 0;
-  transition: transform var(--transition-slow);
+  overflow: hidden;
 }
 
-.milestone-tile-image img {
+.milestone-tile-image img,
+.milestone-tile-image picture,
+.milestone-tile-image picture img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 20%;
   display: block;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* Gradient overlay — always present, deepens on hover */
+.milestone-tile:hover .milestone-tile-image img,
+.milestone-tile:hover .milestone-tile-image picture img {
+  transform: scale(1.06);
+}
+
+/* ---- Gradient overlay ---- */
 .milestone-tile-overlay {
   position: absolute;
   inset: 0;
-  z-index: 1;
   background: linear-gradient(
     to top,
-    rgba(20, 12, 8, 0.72) 0%,
-    rgba(20, 12, 8, 0.35) 40%,
-    rgba(20, 12, 8, 0.05) 70%,
-    transparent 100%
+    rgba(15, 10, 5, 0.72) 0%,
+    rgba(15, 10, 5, 0.35) 40%,
+    transparent 70%
   );
-  transition: background var(--transition-med);
+  transition: opacity 0.4s ease;
 }
 
 .milestone-tile:hover .milestone-tile-overlay {
-  background: linear-gradient(
-    to top,
-    rgba(20, 12, 8, 0.82) 0%,
-    rgba(20, 12, 8, 0.50) 50%,
-    rgba(20, 12, 8, 0.20) 75%,
-    transparent 100%
-  );
+  opacity: 0.9;
 }
 
-/* Content at bottom */
+/* ---- Text content (bottom center) ---- */
 .milestone-tile-content {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 2;
-  padding: var(--spacing-lg) var(--spacing-md) var(--spacing-md);
+  padding: var(--space-xl) var(--space-md) var(--space-lg);
+  text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
+  gap: 4px;
   transform: translateY(0);
-  transition: transform var(--transition-med);
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
+.milestone-tile:hover .milestone-tile-content {
+  transform: translateY(-8px);
+}
+
+/* Main label */
 .milestone-tile-label {
-  font-family: var(--font-body);
-  font-size: var(--font-size-xs);
-  font-weight: 700;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--color-white);
-  margin-bottom: 6px;
-}
-
-.milestone-tile-sublabel {
+  display: block;
   font-family: var(--font-display);
-  font-size: 22px;
+  font-size: clamp(18px, 2.5vw, 26px);
   font-weight: 400;
+  letter-spacing: 0.04em;
   color: var(--color-white);
-  line-height: 1.2;
-  margin-bottom: var(--spacing-sm);
+  line-height: 1;
 }
 
-/* Shop Now link — slides up on hover */
-.milestone-tile-cta {
+/* Sub-label */
+.milestone-tile-sublabel {
+  display: block;
   font-family: var(--font-body);
-  font-size: var(--font-size-xs);
-  font-weight: 600;
+  font-size: 11px;
+  font-weight: 400;
   letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.68);
+  text-transform: uppercase;
+}
+
+/* Shop now link — appears on hover */
+.milestone-tile-cta {
+  display: inline-block;
+  margin-top: var(--space-sm);
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--color-white);
-  text-decoration: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
   padding-bottom: 2px;
   opacity: 0;
-  transform: translateY(8px);
-  transition: opacity var(--transition-fast), transform var(--transition-fast), border-color var(--transition-fast);
+  transform: translateY(6px);
+  transition:
+    opacity 0.3s ease 0.05s,
+    transform 0.3s ease 0.05s;
 }
 
 .milestone-tile:hover .milestone-tile-cta {
@@ -162,91 +187,58 @@
   transform: translateY(0);
 }
 
-.milestone-tile:hover .milestone-tile-cta:hover {
-  border-color: rgba(255, 255, 255, 1);
-}
-
-/* Hover: zoom image */
-.milestone-tile:hover .milestone-tile-image {
-  transform: scale(1.04);
-}
-
-/* Placeholder backgrounds when no image */
-.milestone-tile[data-occasion="engagement"] .milestone-tile-image {
-  background: linear-gradient(135deg, #3d2b1f 0%, #7a5c4a 100%);
-}
-
-.milestone-tile[data-occasion="anniversary"] .milestone-tile-image {
-  background: linear-gradient(135deg, #2b1f3d 0%, #5c4a7a 100%);
-}
-
-.milestone-tile[data-occasion="birthday"] .milestone-tile-image {
-  background: linear-gradient(135deg, #3d2b2b 0%, #7a4a5c 100%);
-}
-
-.milestone-tile[data-occasion="just-because"] .milestone-tile-image {
-  background: linear-gradient(135deg, #1f3d2b 0%, #4a7a5c 100%);
-}
-
-/* Focus styles */
-.milestone-tile:focus-visible {
-  outline: 3px solid var(--color-accent-gold);
-  outline-offset: 3px;
-}
-
 /* ============================================================
    CTA ROW
    ============================================================ */
 .milestone-grid-cta-row {
   text-align: center;
-  padding: var(--spacing-lg) var(--spacing-lg) 0;
+  padding: var(--space-xl) var(--space-lg) 0;
 }
 
 .milestone-grid-cta-row a {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
   font-family: var(--font-body);
-  font-size: var(--font-size-xs);
+  font-size: 11px;
   font-weight: 600;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--color-primary);
   text-decoration: none;
-  border-bottom: 1px solid var(--color-primary);
-  padding-bottom: 2px;
-  transition: color var(--transition-fast), border-color var(--transition-fast);
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 3px;
+  transition: border-color var(--transition-fast), color var(--transition-fast);
 }
 
 .milestone-grid-cta-row a:hover {
   color: var(--color-accent);
   border-color: var(--color-accent);
+  text-decoration: none;
 }
 
 /* ============================================================
    RESPONSIVE
    ============================================================ */
-@media (max-width: 900px) {
+@media (width < 900px) {
   .milestone-grid-tiles {
     grid-template-columns: repeat(2, 1fr);
-    gap: 3px;
+    gap: 2px;
   }
 
   .milestone-tile {
-    aspect-ratio: 4 / 5;
+    aspect-ratio: 1 / 1;
   }
 }
 
-@media (max-width: 480px) {
-  .milestone-grid {
-    padding: var(--spacing-lg) 0;
+@media (width < 600px) {
+  .milestone-grid-tiles {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
   }
 
   .milestone-tile {
     aspect-ratio: 3 / 4;
   }
 
-  .milestone-tile-sublabel {
+  .milestone-tile-label {
     font-size: 18px;
   }
 }
