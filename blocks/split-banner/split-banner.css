@@ -1,28 +1,35 @@
-/* Kay Jewelers — Split Banner Block */
+/*
+ * Kay Jewelers — Split Banner Block
+ * 50/50 layout: image side + cream content side
+ * Used for engagement ring features, brand stories
+ */
 
+/* ============================================================
+   BLOCK WRAPPER
+   ============================================================ */
 .split-banner {
+  padding: 0;
   background-color: var(--color-bg);
   overflow: hidden;
 }
 
 /* ============================================================
-   LAYOUT
+   INNER — 2-column flex/grid
    ============================================================ */
 .split-banner-inner {
   display: grid;
   grid-template-columns: 1fr 1fr;
   min-height: 520px;
   max-width: var(--max-width);
-  margin: 0 auto;
 }
 
-/* Image-right variant */
-.split-banner.image-right .split-banner-inner {
-  direction: rtl;
+/* When image-right modifier is applied, swap column order */
+.split-banner.image-right .split-banner-image {
+  order: 2;
 }
 
-.split-banner.image-right .split-banner-inner > * {
-  direction: ltr;
+.split-banner.image-right .split-banner-content {
+  order: 1;
 }
 
 /* ============================================================
@@ -31,41 +38,23 @@
 .split-banner-image {
   position: relative;
   overflow: hidden;
-  background: #2a1f14;
+  min-height: 440px;
+  background-color: #2a1f14; /* dark fallback */
 }
 
-.split-banner-image img {
+.split-banner-image img,
+.split-banner-image picture,
+.split-banner-image picture img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 20%;
   display: block;
-  transition: transform var(--transition-slow);
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.split-banner:hover .split-banner-image img {
+.split-banner:hover .split-banner-image img,
+.split-banner:hover .split-banner-image picture img {
   transform: scale(1.03);
-}
-
-/* Overlay gradient on image side */
-.split-banner-image::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to right,
-    rgba(26, 26, 26, 0.15),
-    rgba(26, 26, 26, 0.05)
-  );
-  pointer-events: none;
-}
-
-.split-banner.image-right .split-banner-image::after {
-  background: linear-gradient(
-    to left,
-    rgba(26, 26, 26, 0.15),
-    rgba(26, 26, 26, 0.05)
-  );
 }
 
 /* ============================================================
@@ -75,29 +64,32 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: var(--spacing-2xl) var(--spacing-xl);
+  padding: var(--space-2xl) var(--space-2xl);
   background-color: var(--color-bg);
+  will-change: opacity, transform;
 }
 
+/* ---- Eyebrow ---- */
 .split-banner-eyebrow {
   display: block;
   font-family: var(--font-body);
-  font-size: var(--font-size-xs);
+  font-size: 10px;
   font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--color-accent);
-  margin-bottom: var(--spacing-md);
+  margin-bottom: var(--space-md);
 }
 
+/* ---- Title ---- */
 .split-banner-title {
   font-family: var(--font-display);
-  font-size: clamp(26px, 3.5vw, 48px);
+  font-size: clamp(28px, 3.5vw, 48px);
   font-weight: 400;
   line-height: 1.15;
   color: var(--color-primary);
-  margin-bottom: var(--spacing-md);
-  letter-spacing: 0.01em;
+  margin: 0 0 var(--space-lg);
+  letter-spacing: -0.01em;
 }
 
 .split-banner-title em {
@@ -105,86 +97,38 @@
   color: var(--color-accent);
 }
 
+/* ---- Body ---- */
 .split-banner-body {
   font-family: var(--font-body);
   font-size: 15px;
+  font-weight: 300;
   line-height: 1.75;
   color: var(--color-mid);
+  margin: 0 0 var(--space-xl);
   max-width: 440px;
-  margin-bottom: var(--spacing-xl);
 }
 
-/* CTA */
-.split-banner-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 13px 28px;
-  background: transparent;
-  border: 2px solid var(--color-primary);
-  color: var(--color-primary);
-  font-family: var(--font-body);
-  font-size: var(--font-size-xs);
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  text-decoration: none;
-  border-radius: var(--border-radius-sm);
-  align-self: flex-start;
-  transition: background var(--transition-fast), color var(--transition-fast);
-}
-
-.split-banner-cta:hover {
-  background: var(--color-primary);
-  color: var(--color-white);
-}
-
-/* Dark content variant */
-.split-banner.dark .split-banner-content {
-  background-color: var(--color-primary);
-}
-
-.split-banner.dark .split-banner-title {
-  color: var(--color-white);
-}
-
-.split-banner.dark .split-banner-body {
-  color: rgba(255, 255, 255, 0.72);
-}
-
-.split-banner.dark .split-banner-cta {
-  border-color: rgba(255, 255, 255, 0.7);
-  color: var(--color-white);
-}
-
-.split-banner.dark .split-banner-cta:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: var(--color-white);
-}
-
-/* Feature badge / inset */
+/* ---- Feature badge (Lifetime Guarantee etc.) ---- */
 .split-banner-feature {
   display: flex;
   align-items: center;
-  gap: var(--spacing-md);
-  margin-bottom: var(--spacing-xl);
-  padding: var(--spacing-md) var(--spacing-md);
-  background: var(--color-white);
+  gap: var(--space-md);
+  padding: var(--space-md) var(--space-md);
+  background-color: var(--color-bg-light);
   border: 1px solid var(--color-border);
-  border-radius: var(--border-radius-md);
-  max-width: 300px;
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-xl);
+  max-width: 380px;
 }
 
 .split-banner-feature-icon {
-  width: 40px;
-  height: 40px;
-  background: var(--color-bg);
-  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 36px;
+  height: 36px;
+  color: var(--color-accent-gold);
   flex-shrink: 0;
-  color: var(--color-accent);
 }
 
 .split-banner-feature-icon svg {
@@ -192,52 +136,112 @@
   height: 20px;
 }
 
+.split-banner-feature-text {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
 .split-banner-feature-text strong {
-  display: block;
-  font-size: var(--font-size-sm);
+  font-family: var(--font-body);
+  font-size: 12px;
   font-weight: 600;
+  letter-spacing: 0.04em;
   color: var(--color-primary);
-  margin-bottom: 2px;
 }
 
 .split-banner-feature-text span {
-  font-size: var(--font-size-xs);
+  font-size: 12px;
   color: var(--color-mid);
+}
+
+/* ---- CTA ---- */
+.split-banner-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  align-self: flex-start;
+  padding: 14px 32px;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1.5px solid var(--color-primary);
+  border-radius: var(--radius-sm);
+  transition:
+    background-color var(--transition-base),
+    color var(--transition-base),
+    border-color var(--transition-base),
+    transform var(--transition-fast),
+    box-shadow var(--transition-base);
+}
+
+.split-banner-cta:hover {
+  background-color: transparent;
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  text-decoration: none;
+}
+
+.split-banner-cta svg {
+  width: 14px;
+  height: 14px;
+  transition: transform var(--transition-base);
+}
+
+.split-banner-cta:hover svg {
+  transform: translateX(4px);
 }
 
 /* ============================================================
    RESPONSIVE
    ============================================================ */
-@media (max-width: 900px) {
+@media (width < 900px) {
   .split-banner-inner {
     grid-template-columns: 1fr;
     min-height: auto;
   }
 
-  .split-banner.image-right .split-banner-inner {
-    direction: ltr;
-  }
-
   .split-banner-image {
-    aspect-ratio: 16 / 9;
-    min-height: 260px;
+    min-height: 300px;
+    order: 1 !important;
   }
 
   .split-banner-content {
-    padding: var(--spacing-xl) var(--spacing-lg);
+    order: 2 !important;
+    padding: var(--space-xl) var(--space-lg);
   }
 
-  .split-banner-body {
+  .split-banner-title {
+    font-size: clamp(24px, 5vw, 36px);
+  }
+
+  .split-banner-feature {
     max-width: 100%;
   }
 }
 
-@media (max-width: 480px) {
+@media (width < 600px) {
   .split-banner-content {
-    padding: var(--spacing-lg) var(--spacing-md);
+    padding: var(--space-lg) var(--space-md);
   }
 
   .split-banner-title {
-    font-size: clamp(22px, 6vw, 36px);
+    font-size: 26px;
+  }
+
+  .split-banner-body {
+    font-size: 14px;
+  }
+
+  .split-banner-cta {
+    width: 100%;
+    justify-content: center;
   }
 }
