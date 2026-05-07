@@ -61,7 +61,7 @@ export default function decorate(block) {
     const pic = pictureEl.cloneNode(true);
     const img = pic.querySelector('img');
     if (img) {
-      img.setAttribute('loading', 'lazy');
+      img.setAttribute('loading', 'eager');
       img.setAttribute('width', '720');
       img.setAttribute('height', '520');
       if (!img.alt) img.alt = 'Kay Jewelers featured piece';
@@ -69,28 +69,20 @@ export default function decorate(block) {
     imagePanel.append(pic);
   } else if (imgEl) {
     const img = imgEl.cloneNode(true);
-    img.setAttribute('loading', 'lazy');
+    img.setAttribute('loading', 'eager');
     img.setAttribute('width', '720');
     img.setAttribute('height', '520');
     if (!img.alt) img.alt = 'Kay Jewelers featured piece';
     imagePanel.append(img);
   } else {
-    /* Gradient placeholder */
-    const placeholder = document.createElement('div');
-    placeholder.style.cssText = [
-      'width:100%', 'height:100%',
-      'background:linear-gradient(135deg,#2a1f14 0%,#6b4c35 50%,#9e7a58 100%)',
-      'display:flex', 'align-items:center', 'justify-content:center',
-    ].join(';');
-    placeholder.innerHTML = `
-      <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity:0.3" aria-hidden="true">
-        <circle cx="40" cy="40" r="28" stroke="white" stroke-width="1.5" fill="none"/>
-        <circle cx="40" cy="40" r="18" stroke="white" stroke-width="1" fill="none" stroke-dasharray="4 3"/>
-        <circle cx="40" cy="40" r="5" fill="white" opacity="0.6"/>
-        <path d="M40 12L44 24L40 20L36 24L40 12Z" fill="white" opacity="0.8"/>
-      </svg>
-    `;
-    imagePanel.append(placeholder);
+    /* Default jewelry image for split-banner */
+    const img = document.createElement('img');
+    img.src = 'https://images.unsplash.com/photo-1599707367072-cd6ada2bc375?w=720&q=80&auto=format&fit=crop';
+    img.alt = 'Kay Jewelers featured piece';
+    img.loading = 'eager';
+    img.decoding = 'async';
+    img.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
+    imagePanel.append(img);
   }
 
   /* ---- 5. Content panel ---- */
