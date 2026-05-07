@@ -17,7 +17,7 @@ const SAMPLE_PRODUCTS = [
     priceRange: '1000+',
     badge: null,
     href: '/engagement-rings/diamond-solitaire',
-    imgGradient: 'linear-gradient(135deg,#e8e0d5 0%,#d4c4a8 100%)',
+    imgSrc: 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=400&q=80&auto=format&fit=crop',
   },
   {
     id: 'gf-002',
@@ -29,7 +29,7 @@ const SAMPLE_PRODUCTS = [
     priceRange: '250-500',
     badge: 'Sale',
     href: '/necklaces/open-hearts-diamond',
-    imgGradient: 'linear-gradient(135deg,#e8d5d5 0%,#d4a8a8 100%)',
+    imgSrc: 'https://images.unsplash.com/photo-1599643477877-530eb83abc8e?w=400&q=80&auto=format&fit=crop',
   },
   {
     id: 'gf-003',
@@ -41,7 +41,7 @@ const SAMPLE_PRODUCTS = [
     priceRange: '100-250',
     badge: 'New',
     href: '/earrings/diamond-halo',
-    imgGradient: 'linear-gradient(135deg,#f5f0e8 0%,#c4952a 100%)',
+    imgSrc: 'https://images.unsplash.com/photo-1506630448388-4e683c67ddb0?w=400&q=80&auto=format&fit=crop',
   },
   {
     id: 'gf-004',
@@ -53,7 +53,7 @@ const SAMPLE_PRODUCTS = [
     priceRange: '500-1000',
     badge: null,
     href: '/wedding-bands/mens-diamond',
-    imgGradient: 'linear-gradient(135deg,#d5dde8 0%,#8b9db0 100%)',
+    imgSrc: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400&q=80&auto=format&fit=crop',
   },
   {
     id: 'gf-005',
@@ -65,7 +65,7 @@ const SAMPLE_PRODUCTS = [
     priceRange: 'under-100',
     badge: null,
     href: '/necklaces/heart-locket',
-    imgGradient: 'linear-gradient(135deg,#e8e8e8 0%,#c0c0c0 100%)',
+    imgSrc: 'https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?w=400&q=80&auto=format&fit=crop',
   },
   {
     id: 'gf-006',
@@ -77,7 +77,7 @@ const SAMPLE_PRODUCTS = [
     priceRange: '100-250',
     badge: null,
     href: '/bracelets/children-heart',
-    imgGradient: 'linear-gradient(135deg,#f5e8f5 0%,#d4a8d4 100%)',
+    imgSrc: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=400&q=80&auto=format&fit=crop',
   },
   {
     id: 'gf-007',
@@ -89,7 +89,7 @@ const SAMPLE_PRODUCTS = [
     priceRange: '500-1000',
     badge: 'Sale',
     href: '/rings/three-stone-anniversary',
-    imgGradient: 'linear-gradient(135deg,#f5e8d5 0%,#d4a078 100%)',
+    imgSrc: 'https://images.unsplash.com/photo-1599707367072-cd6ada2bc375?w=400&q=80&auto=format&fit=crop',
   },
   {
     id: 'gf-008',
@@ -101,7 +101,7 @@ const SAMPLE_PRODUCTS = [
     priceRange: '100-250',
     badge: null,
     href: '/rings/signet-engravable',
-    imgGradient: 'linear-gradient(135deg,#f5f0d5 0%,#c4a040 100%)',
+    imgSrc: 'https://images.unsplash.com/photo-1543294001-f7cd5d7fb516?w=400&q=80&auto=format&fit=crop',
   },
 ];
 
@@ -124,7 +124,7 @@ function buildProductCard(product) {
 
   card.innerHTML = `
     <div class="gift-product-card-image">
-      <div style="width:100%;height:100%;background:${product.imgGradient};" aria-hidden="true"></div>
+      <img src="${product.imgSrc}" alt="${product.name}" loading="eager" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block;" />
       ${product.badge
         ? `<span class="gift-product-badge${product.badge === 'New' ? ' gift-product-badge--new' : ''}">${product.badge}</span>`
         : ''
