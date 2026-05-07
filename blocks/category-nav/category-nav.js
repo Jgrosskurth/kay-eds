@@ -109,14 +109,14 @@ export default function decorate(block) {
       const pic = cat.picture.cloneNode(true);
       const img = pic.querySelector('img');
       if (img) {
-        img.setAttribute('loading', 'lazy');
+        img.setAttribute('loading', 'eager');
         img.setAttribute('width', '140');
         img.setAttribute('height', '140');
         img.setAttribute('alt', cat.imgAlt || cat.label);
       }
       imageContent = pic.outerHTML;
     } else if (cat.imgSrc) {
-      imageContent = `<img src="${cat.imgSrc}" alt="${cat.imgAlt || cat.label}" loading="lazy" width="140" height="140" />`;
+      imageContent = `<img src="${cat.imgSrc}" alt="${cat.imgAlt || cat.label}" loading="eager" width="140" height="140" />`;
     } else {
       imageContent = `
         <div style="
