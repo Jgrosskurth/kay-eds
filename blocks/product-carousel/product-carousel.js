@@ -21,7 +21,7 @@ const SAMPLE_PRODUCTS = [
     badgeType: 'bestseller',
     href: '/engagement-rings/1ct-diamond-solitaire',
     swatches: ['#C0C0C0', '#FFD700', '#F5C5A3'],
-    imgGradient: 'linear-gradient(145deg,#F0EBE3 0%,#D4C4A8 60%,#B8A882 100%)',
+    imgSrc: 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=400&q=80&auto=format&fit=crop',
   },
   {
     id: 'pc-002',
@@ -33,7 +33,7 @@ const SAMPLE_PRODUCTS = [
     badgeType: 'sale',
     href: '/rings/diamond-bypass-rose-gold',
     swatches: ['#F5C5A3', '#C0C0C0'],
-    imgGradient: 'linear-gradient(145deg,#F5E8D5 0%,#D4A078 60%,#B87850 100%)',
+    imgSrc: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=400&q=80&auto=format&fit=crop',
   },
   {
     id: 'pc-003',
@@ -44,7 +44,7 @@ const SAMPLE_PRODUCTS = [
     badge: null,
     href: '/necklaces/open-hearts-pendant',
     swatches: ['#C0C0C0'],
-    imgGradient: 'linear-gradient(145deg,#FAFAF8 0%,#E8E0D5 60%,#C8B89A 100%)',
+    imgSrc: 'https://images.unsplash.com/photo-1599643477877-530eb83abc8e?w=400&q=80&auto=format&fit=crop',
   },
   {
     id: 'pc-004',
@@ -56,7 +56,7 @@ const SAMPLE_PRODUCTS = [
     badgeType: 'new',
     href: '/earrings/diamond-studs-14k',
     swatches: ['#C0C0C0', '#FFD700'],
-    imgGradient: 'linear-gradient(145deg,#F0EBE3 0%,#C8B89A 60%,#A89070 100%)',
+    imgSrc: 'https://images.unsplash.com/photo-1506630448388-4e683c67ddb0?w=400&q=80&auto=format&fit=crop',
   },
   {
     id: 'pc-005',
@@ -68,7 +68,7 @@ const SAMPLE_PRODUCTS = [
     badgeType: 'sale',
     href: '/bracelets/diamond-tennis',
     swatches: ['#C0C0C0', '#FFD700'],
-    imgGradient: 'linear-gradient(145deg,#E8E8F5 0%,#A8A8D4 60%,#8888B8 100%)',
+    imgSrc: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400&q=80&auto=format&fit=crop',
   },
   {
     id: 'pc-006',
@@ -79,7 +79,7 @@ const SAMPLE_PRODUCTS = [
     badge: null,
     href: '/wedding-bands/milgrain-yellow-gold',
     swatches: ['#FFD700', '#C0C0C0', '#F5C5A3'],
-    imgGradient: 'linear-gradient(145deg,#FFF8E8 0%,#D4A840 60%,#B88820 100%)',
+    imgSrc: 'https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?w=400&q=80&auto=format&fit=crop',
   },
 ];
 
@@ -100,7 +100,7 @@ function buildCard(product) {
 
   card.innerHTML = `
     <div class="product-card-image">
-      <div style="width:100%;height:100%;background:${product.imgGradient};" aria-hidden="true"></div>
+      <img src="${product.imgSrc}" alt="${product.name}" loading="eager" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block;" />
       ${product.badge
         ? `<span class="product-card-badge product-card-badge--${product.badgeType}">${product.badge}</span>`
         : ''
