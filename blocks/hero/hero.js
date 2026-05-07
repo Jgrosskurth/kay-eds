@@ -62,11 +62,8 @@ export default function decorate(block) {
     mainImgEl.setAttribute('loading', 'eager');
     mainImageHTML = mainImgEl.outerHTML;
   } else {
-    // Gradient placeholder — warm golden-hour
-    mainImageHTML = `<div style="
-      width:100%;height:100%;
-      background:linear-gradient(135deg,#2a1f14 0%,#4a3728 35%,#6b4c35 60%,#8b6748 100%);
-    "></div>`;
+    // Default hero image — jewelry lifestyle
+    mainImageHTML = `<img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=1440&q=80&auto=format&fit=crop" alt="For the Moments that Define Forever" loading="eager" fetchpriority="high" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block;" />`;
   }
 
   /* ---- 5. Build inset image HTML ---- */
