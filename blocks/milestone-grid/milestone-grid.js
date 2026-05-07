@@ -162,7 +162,7 @@ export default function decorate(block) {
           }
         });
       },
-      { threshold: 0.08 },
+      { threshold: 0.05, rootMargin: '300px 0px 300px 0px' },
     );
 
     tiles.forEach((tile) => io.observe(tile));
