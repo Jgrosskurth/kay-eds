@@ -104,14 +104,14 @@ export default function decorate(block) {
       const pic = m.picture.cloneNode(true);
       const img = pic.querySelector('img');
       if (img) {
-        img.setAttribute('loading', 'lazy');
+        img.setAttribute('loading', 'eager');
         img.setAttribute('width', '400');
         img.setAttribute('height', '533');
         img.setAttribute('alt', m.imgAlt);
       }
       imageHTML = pic.outerHTML;
     } else if (m.imgSrc) {
-      imageHTML = `<img src="${m.imgSrc}" alt="${m.imgAlt}" loading="lazy" width="400" height="533" />`;
+      imageHTML = `<img src="${m.imgSrc}" alt="${m.imgAlt}" loading="eager" width="400" height="533" />`;
     } else {
       imageHTML = `<div style="width:100%;height:100%;background:${m.gradient};"></div>`;
     }
